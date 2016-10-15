@@ -17,6 +17,19 @@ class DevelopController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Name.text = KeyWord
+        let filePath = NSBundle.mainBundle().pathForResource("pokedb", ofType: "csv")
+        do {
+            var csvData: String = try String(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)
+            csvData.enumerateLines {
+                line, stop in
+                
+                print(line)
+            }
+
+        } catch {
+            print(error)
+        }
+        
+        // Name.text = KeyWord
     }
 }

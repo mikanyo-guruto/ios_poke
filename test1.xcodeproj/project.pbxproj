@@ -15,6 +15,8 @@
 		3F8430CA1DA8714D001841DC /* test1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8430C91DA8714D001841DC /* test1Tests.swift */; };
 		3F8430D51DA8714D001841DC /* test1UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8430D41DA8714D001841DC /* test1UITests.swift */; };
 		3F8430E31DA87569001841DC /* DevelopController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8430E21DA87569001841DC /* DevelopController.swift */; };
+		3FA03BD41DB1CFA900D6FFF2 /* pokedb.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 3FA03BD31DB1CFA900D6FFF2 /* pokedb.sqlite3 */; };
+		3FA03BD81DB1D21600D6FFF2 /* Develop.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3FA03BD61DB1D21600D6FFF2 /* Develop.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		3F8430D41DA8714D001841DC /* test1UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test1UITests.swift; sourceTree = "<group>"; };
 		3F8430D61DA8714D001841DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F8430E21DA87569001841DC /* DevelopController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevelopController.swift; sourceTree = "<group>"; };
+		3FA03BD31DB1CFA900D6FFF2 /* pokedb.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = pokedb.sqlite3; sourceTree = "<group>"; };
+		3FA03BD71DB1D21600D6FFF2 /* Develop.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Develop.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,7 @@
 				3F8430C81DA8714D001841DC /* test1Tests */,
 				3F8430D31DA8714D001841DC /* test1UITests */,
 				3F8430B21DA8714D001841DC /* Products */,
+				3FA03BC81DB1B11A00D6FFF2 /* Lib */,
 			);
 			sourceTree = "<group>";
 		};
@@ -106,6 +111,7 @@
 				3F8430BD1DA8714D001841DC /* LaunchScreen.storyboard */,
 				3F8430C01DA8714D001841DC /* Info.plist */,
 				3F8430E21DA87569001841DC /* DevelopController.swift */,
+				3FA03BD61DB1D21600D6FFF2 /* Develop.xcdatamodeld */,
 			);
 			path = test1;
 			sourceTree = "<group>";
@@ -126,6 +132,14 @@
 				3F8430D61DA8714D001841DC /* Info.plist */,
 			);
 			path = test1UITests;
+			sourceTree = "<group>";
+		};
+		3FA03BC81DB1B11A00D6FFF2 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				3FA03BD31DB1CFA900D6FFF2 /* pokedb.sqlite3 */,
+			);
+			name = Lib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F8430BF1DA8714D001841DC /* LaunchScreen.storyboard in Resources */,
+				3FA03BD41DB1CFA900D6FFF2 /* pokedb.sqlite3 in Resources */,
 				3F8430BC1DA8714D001841DC /* Assets.xcassets in Resources */,
 				3F8430BA1DA8714D001841DC /* Main.storyboard in Resources */,
 			);
@@ -265,6 +280,7 @@
 				3F8430E31DA87569001841DC /* DevelopController.swift in Sources */,
 				3F8430B71DA8714D001841DC /* ViewController.swift in Sources */,
 				3F8430B51DA8714D001841DC /* AppDelegate.swift in Sources */,
+				3FA03BD81DB1D21600D6FFF2 /* Develop.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,6 +505,7 @@
 				3F8430DB1DA8714D001841DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3F8430DC1DA8714D001841DC /* Build configuration list for PBXNativeTarget "test1Tests" */ = {
 			isa = XCConfigurationList;
@@ -497,6 +514,7 @@
 				3F8430DE1DA8714D001841DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3F8430DF1DA8714D001841DC /* Build configuration list for PBXNativeTarget "test1UITests" */ = {
 			isa = XCConfigurationList;
@@ -505,8 +523,22 @@
 				3F8430E11DA8714D001841DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3FA03BD61DB1D21600D6FFF2 /* Develop.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3FA03BD71DB1D21600D6FFF2 /* Develop.xcdatamodel */,
+			);
+			currentVersion = 3FA03BD71DB1D21600D6FFF2 /* Develop.xcdatamodel */;
+			path = Develop.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3F8430A91DA8714C001841DC /* Project object */;
 }
