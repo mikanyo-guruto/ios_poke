@@ -17,6 +17,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // 初回起動処理
+        // csvを入れ込む配列を用意
+        var result: [[String]] = []
+        // csvファイルを指定
+        if let csvPath = NSBundle.mainBundle().pathForResource("pokedb", ofType: "csv") {
+            // csvの文字を指定
+            let csvString = try! NSString(contentsOfFile: csvPath, encoding: NSUTF8StringEncoding) as String
+            // 一行ずつカンマ区切りで読み込む
+            csvString.enumerateLines { (line, stop) -> () in
+                result.append(line.componentsSeparatedByString(","))
+            }
+        }
+        // カラムを削除
+        result.removeAtIndex(0)
+        
+        // カラムを変数で宣言
+        var no: Int = 0
+        var name: String = "null"
+        
+        // appDelegateインスタンスを生成
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        // CoreDateでDBへ保存
+        result.forEach { row in
+            no = Int(row[0])!
+            name = row[1]
+            
+            // テーブルの指定
+            let monster = NSEntityDescription.insertNewObjectForEntityForName("Monster", inManagedObjectContext: appDelegate.managedObjectContext) as! Monster
+            // カラムへ入れ込む
+            monster.no = no
+            monster.name = name
+            
+            // コミット
+            appDelegate.saveContext()
+        }
+        
+        // 検索
+        let fetchRequest = NSFetchRequest(entityName: "Monster")
+        do {
+            let monsters = try appDelegate.managedObjectContext.executeFetchRequest(fetchRequest) as! [Monster]
+            for monster in monsters {
+                print("\(monster.no) \(monster.name)")
+            }
+        } catch let error as NSError {
+            print(error)
+        }
         return true
     }
 
@@ -52,7 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     lazy var managedObjectModel: NSManagedObjectModel = {
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
-        let modelURL = NSBundle.mainBundle().URLForResource("core", withExtension: "momd")!
+        let modelURL = NSBundle.mainBundle().URLForResource("Develop", withExtension: "momd")!
         return NSManagedObjectModel(contentsOfURL: modelURL)!
     }()
     

@@ -17,6 +17,9 @@
 		3F8430E31DA87569001841DC /* DevelopController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8430E21DA87569001841DC /* DevelopController.swift */; };
 		3FA03BD41DB1CFA900D6FFF2 /* pokedb.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 3FA03BD31DB1CFA900D6FFF2 /* pokedb.sqlite3 */; };
 		3FA03BD81DB1D21600D6FFF2 /* Develop.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3FA03BD61DB1D21600D6FFF2 /* Develop.xcdatamodeld */; };
+		3FDC63D91DBB023A009609F7 /* pokedb.csv in Resources */ = {isa = PBXBuildFile; fileRef = 3FDC63D81DBB023A009609F7 /* pokedb.csv */; };
+		3FDC63DC1DBB0690009609F7 /* Monster+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDC63DA1DBB0690009609F7 /* Monster+CoreDataProperties.swift */; };
+		3FDC63DD1DBB0690009609F7 /* Monster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDC63DB1DBB0690009609F7 /* Monster.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,9 @@
 		3F8430E21DA87569001841DC /* DevelopController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevelopController.swift; sourceTree = "<group>"; };
 		3FA03BD31DB1CFA900D6FFF2 /* pokedb.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = pokedb.sqlite3; sourceTree = "<group>"; };
 		3FA03BD71DB1D21600D6FFF2 /* Develop.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Develop.xcdatamodel; sourceTree = "<group>"; };
+		3FDC63D81DBB023A009609F7 /* pokedb.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pokedb.csv; sourceTree = "<group>"; };
+		3FDC63DA1DBB0690009609F7 /* Monster+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Monster+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3FDC63DB1DBB0690009609F7 /* Monster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Monster.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +89,8 @@
 		3F8430A81DA8714C001841DC = {
 			isa = PBXGroup;
 			children = (
+				3FDC63DA1DBB0690009609F7 /* Monster+CoreDataProperties.swift */,
+				3FDC63DB1DBB0690009609F7 /* Monster.swift */,
 				3F8430B31DA8714D001841DC /* test1 */,
 				3F8430C81DA8714D001841DC /* test1Tests */,
 				3F8430D31DA8714D001841DC /* test1UITests */,
@@ -137,6 +145,7 @@
 		3FA03BC81DB1B11A00D6FFF2 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				3FDC63D81DBB023A009609F7 /* pokedb.csv */,
 				3FA03BD31DB1CFA900D6FFF2 /* pokedb.sqlite3 */,
 			);
 			name = Lib;
@@ -210,7 +219,6 @@
 				TargetAttributes = {
 					3F8430B01DA8714C001841DC = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = 8AG75U3VJA;
 					};
 					3F8430C41DA8714D001841DC = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -250,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F8430BF1DA8714D001841DC /* LaunchScreen.storyboard in Resources */,
+				3FDC63D91DBB023A009609F7 /* pokedb.csv in Resources */,
 				3FA03BD41DB1CFA900D6FFF2 /* pokedb.sqlite3 in Resources */,
 				3F8430BC1DA8714D001841DC /* Assets.xcassets in Resources */,
 				3F8430BA1DA8714D001841DC /* Main.storyboard in Resources */,
@@ -277,9 +286,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FDC63DC1DBB0690009609F7 /* Monster+CoreDataProperties.swift in Sources */,
 				3F8430E31DA87569001841DC /* DevelopController.swift in Sources */,
 				3F8430B71DA8714D001841DC /* ViewController.swift in Sources */,
 				3F8430B51DA8714D001841DC /* AppDelegate.swift in Sources */,
+				3FDC63DD1DBB0690009609F7 /* Monster.swift in Sources */,
 				3FA03BD81DB1D21600D6FFF2 /* Develop.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -420,6 +431,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = test1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = aa.test1;
@@ -431,6 +443,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = test1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = aa.test1;
