@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class DevelopController: UIViewController {
     
@@ -31,6 +32,30 @@ class DevelopController: UIViewController {
             print(error)
         }
         */
-        // Name.text = KeyWord
+        
+        Name.text = KeyWord
+        
+        // appDelegateインスタンスの生成
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedObjectContext = appDelegate.managedObjectContext
+        
+        // リクエストの設定
+        let request = NSFetchRequest(entityName: "Monster")
+        let predicate = NSPredicate(format: "name = %d", KeyWord)
+        request.predicate = predicate
+        request.returnsObjectsAsFaults = false
+        
+        // リクエストの実行
+        var datas: [Monster] = []
+        do {
+            let results = try managedObjectContext.executeFetchRequest(request) as! [Monster]
+            datas = results
+        } catch let error as NSError{
+            print("Could not fetch ¥(error), ¥(error.userInfo)")
+        }
+        for row in datas {
+            print(row.no)
+            print(row.name)
+        }
     }
 }
