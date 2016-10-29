@@ -19,51 +19,64 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // 初回起動処理
-        // csvを入れ込む配列を用意
-        var result: [[String]] = []
-        // csvファイルを指定
-        if let csvPath = NSBundle.mainBundle().pathForResource("pokedb", ofType: "csv") {
-            // csvの文字を指定
-            let csvString = try! NSString(contentsOfFile: csvPath, encoding: NSUTF8StringEncoding) as String
-            // 一行ずつカンマ区切りで読み込む
-            csvString.enumerateLines { (line, stop) -> () in
-                result.append(line.componentsSeparatedByString(","))
-            }
-        }
-        // カラムを削除
-        result.removeAtIndex(0)
+        let defaults = NSUserDefaults.standardUserDefaults()
+        var dic = ["firstLaunch": true]
         
-        // カラムを変数で宣言
-        var no: Int = 0
-        var name: String = "null"
-        
-        // appDelegateインスタンスを生成
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        // CoreDateでDBへ保存
-        result.forEach { row in
-            no = Int(row[0])!
-            name = row[1]
+        // 初回起動の場合、csvからDBを作成する
+        if defaults.boolForKey("firstLaunch") {
             
-            // テーブルの指定
-            let monster = NSEntityDescription.insertNewObjectForEntityForName("Monster", inManagedObjectContext: appDelegate.managedObjectContext) as! Monster
-            // カラムへ入れ込む
-            monster.no = no
-            monster.name = name
-            
-            // コミット
-            appDelegate.saveContext()
-        }
-        
-        // 検索
-        let fetchRequest = NSFetchRequest(entityName: "Monster")
-        do {
-            let monsters = try appDelegate.managedObjectContext.executeFetchRequest(fetchRequest) as! [Monster]
-            for monster in monsters {
-                print("\(monster.no) \(monster.name)")
+            // csvを入れ込む配列を用意
+            var result: [[String]] = []
+            // csvファイルを指定
+            if let csvPath = NSBundle.mainBundle().pathForResource("pokedb", ofType: "csv") {
+                // csvの文字を指定
+                let csvString = try! NSString(contentsOfFile: csvPath, encoding: NSUTF8StringEncoding) as String
+                // 一行ずつカンマ区切りで読み込む
+                csvString.enumerateLines { (line, stop) -> () in
+                    result.append(line.componentsSeparatedByString(","))
+                }
             }
-        } catch let error as NSError {
-            print(error)
+            // カラムを削除
+            result.removeAtIndex(0)
+            
+            // カラムを変数で宣言
+            var no: Int = 0
+            var name: String = "null"
+            
+            // appDelegateインスタンスを生成
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            // CoreDateでDBへ保存
+            result.forEach { row in
+                no = Int(row[0])!
+                name = row[1]
+                
+                // テーブルの指定
+                let monster = NSEntityDescription.insertNewObjectForEntityForName("Monster", inManagedObjectContext: appDelegate.managedObjectContext) as! Monster
+                // カラムへ入れ込む
+                monster.no = no
+                monster.name = name
+                
+                // コミット
+                appDelegate.saveContext()
+            }
+            
+            // 検索
+            let fetchRequest = NSFetchRequest(entityName: "Monster")
+            do {
+                let monsters = try appDelegate.managedObjectContext.executeFetchRequest(fetchRequest) as! [Monster]
+                for monster in monsters {
+                    print("\(monster.no) \(monster.name)")
+                }
+            } catch let error as NSError {
+                print(error)
+            }
+            
+            // 初回起動処理が終わったら、フラグを立てる
+            defaults.setBool(false, forKey: "firstLaunch")
+            
+            print("firstLaunch")
         }
+        print("Run")
         return true
     }
 
