@@ -13,49 +13,46 @@ class DevelopController: UIViewController {
     
     var KeyWord: String!
     
+    @IBOutlet weak var Img: UIImageView!
     @IBOutlet weak var Name: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         /*
-        let filePath = NSBundle.mainBundle().pathForResource("pokedb", ofType: "csv")
-        do {
-            var csvData: String = try String(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)
-            csvData.enumerateLines {
-                line, stop in
-                
-                print(line)
-            }
-
-        } catch {
-            print(error)
-        }
+            ### DBのnameで検索する処理
         */
-        
-        Name.text = KeyWord
-        
         // appDelegateインスタンスの生成
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedObjectContext = appDelegate.managedObjectContext
         
         // リクエストの設定
         let request = NSFetchRequest(entityName: "Monster")
-        let predicate = NSPredicate(format: "name = %d", KeyWord)
+        let predicate = NSPredicate(format: "name = %@", KeyWord)
         request.predicate = predicate
-        request.returnsObjectsAsFaults = false
         
         // リクエストの実行
-        var datas: [Monster] = []
         do {
             let results = try managedObjectContext.executeFetchRequest(request) as! [Monster]
-            datas = results
+            // 検索してヒットしたら
+            if !results.isEmpty {
+                // 画面にデータをセット
+                for row in results {
+                    Name.text = row.name
+                    // 画像はidと同じ画像名の物を表示する為、一度idをstringにキャスト
+                    let tmp: String = String(row.no)
+                    Img.image = UIImage(named: tmp)
+                    if tmp == "1" {
+                        print("ok")
+                    }else{
+                        print(tmp)
+                    }
+                }
+            }else{
+                Name.text = "Not Found"
+            }
         } catch let error as NSError{
             print("Could not fetch ¥(error), ¥(error.userInfo)")
-        }
-        for row in datas {
-            print(row.no)
-            print(row.name)
         }
     }
 }

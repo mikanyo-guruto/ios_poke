@@ -129,7 +129,7 @@
                         <viewControllerLayoutGuide type="top" id="4m8-uZ-rm1"/>
                         <viewControllerLayoutGuide type="bottom" id="GHY-gF-LVp"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="iUd-Z2-ujr">
+                    <view key="view" contentMode="scaleToFill" id="iUd-Z2-ujr" customClass="UIImageView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -140,22 +140,38 @@
                                     <segue destination="BYZ-38-t0r" kind="show" id="Jvi-cU-qaM"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="welcom" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVR-Kg-hXA">
-                                <rect key="frame" x="256" y="104" width="88" height="35"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tqN-gK-Fqd">
+                                <rect key="frame" x="20" y="120" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="46r-UK-YcO"/>
+                                    <constraint firstAttribute="width" constant="300" id="XfG-di-msu"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVR-Kg-hXA">
+                                <rect key="frame" x="127" y="65" width="86" height="38"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="aVR-Kg-hXA" firstAttribute="centerY" secondItem="iUd-Z2-ujr" secondAttribute="centerY" constant="-178.5" id="3KR-xe-jdO"/>
-                            <constraint firstItem="aVR-Kg-hXA" firstAttribute="centerX" secondItem="iUd-Z2-ujr" secondAttribute="centerX" id="9Tm-qh-bAV"/>
+                            <constraint firstItem="aVR-Kg-hXA" firstAttribute="centerY" secondItem="iUd-Z2-ujr" secondAttribute="centerY" constant="-216" id="3KR-xe-jdO"/>
+                            <constraint firstItem="tqN-gK-Fqd" firstAttribute="centerX" secondItem="iUd-Z2-ujr" secondAttribute="centerX" constant="-130" id="6PB-Us-N15"/>
+                            <constraint firstItem="aVR-Kg-hXA" firstAttribute="centerX" secondItem="iUd-Z2-ujr" secondAttribute="centerX" constant="-130" id="9Tm-qh-bAV"/>
                             <constraint firstItem="uo8-HY-rcS" firstAttribute="top" secondItem="4m8-uZ-rm1" secondAttribute="bottom" constant="8" id="CBd-ks-cMX"/>
+                            <constraint firstItem="aVR-Kg-hXA" firstAttribute="top" secondItem="4m8-uZ-rm1" secondAttribute="bottom" constant="45" id="Hit-Gd-OxL"/>
+                            <constraint firstItem="aVR-Kg-hXA" firstAttribute="top" secondItem="4m8-uZ-rm1" secondAttribute="bottom" constant="20" id="Pe1-3M-bbZ"/>
                             <constraint firstItem="uo8-HY-rcS" firstAttribute="leading" secondItem="iUd-Z2-ujr" secondAttribute="leadingMargin" id="e3E-pW-6Cz"/>
+                            <constraint firstItem="tqN-gK-Fqd" firstAttribute="centerY" secondItem="iUd-Z2-ujr" secondAttribute="centerY" constant="-30" id="wsX-Ps-CUb"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Pe1-3M-bbZ"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
+                        <outlet property="Img" destination="tqN-gK-Fqd" id="qQP-1I-ikt"/>
                         <outlet property="Name" destination="aVR-Kg-hXA" id="B9y-J3-01L"/>
                     </connections>
                 </viewController>
