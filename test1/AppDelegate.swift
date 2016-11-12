@@ -41,19 +41,64 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // カラムを変数で宣言
             var no: Int = 0
             var name: String = "null"
+            var t1: String = "null"
+            var t2: String = "null"
+            var h: Int = 0
+            var a: Int = 0
+            var b: Int = 0
+            var c: Int = 0
+            var d: Int = 0
+            var s: Int = 0
+            var total: Int = 0
+            var sp1: String = "null"
+            var sp2: String = "null"
+            var ha: String = "null"
+            var ad1: Int = 0
+            var ad2: Int = 0
+            var ad3: Int = 0
             
             // appDelegateインスタンスを生成
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             // CoreDateでDBへ保存
             result.forEach { row in
-                no = Int(row[0])!
-                name = row[1]
+                no = Int(row[0]) ?? 9999
+                name = row[1] ?? ""
+                t1 = row[2] ?? ""
+                t2 = row[3] ?? ""
+                h = Int(row[4]) ?? 9999
+                a = Int(row[5]) ?? 9999
+                b = Int(row[6]) ?? 9999
+                c = Int(row[7]) ?? 9999
+                d = Int(row[8]) ?? 9999
+                s = Int(row[9]) ?? 9999
+                total = Int(row[10]) ?? 9999
+                sp1 = row[11] ?? ""
+                sp2 = row[12] ?? ""
+                ha = row[13] ?? ""
+                ad1 = Int(row[14]) ?? 9999
+                ad2 = Int(row[15]) ?? 9999
+                ad3 = Int(row[16]) ?? 9999
                 
                 // テーブルの指定
                 let monster = NSEntityDescription.insertNewObjectForEntityForName("Monster", inManagedObjectContext: appDelegate.managedObjectContext) as! Monster
                 // カラムへ入れ込む
                 monster.no = no
                 monster.name = name
+                monster.t1 = t1
+                monster.t2 = t2
+                monster.h = h
+                monster.a = a
+                monster.b = b
+                monster.c = c
+                monster.d = d
+                monster.s = s
+                monster.total = total
+                monster.sp1 = sp1
+                monster.sp2 = sp2
+                monster.ha = ha
+                monster.ad1 = ad1
+                monster.ad2 = ad2
+                monster.ad3 = ad3
                 
                 // コミット
                 appDelegate.saveContext()

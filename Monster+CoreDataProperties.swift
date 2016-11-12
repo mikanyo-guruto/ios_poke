@@ -16,5 +16,20 @@ extension Monster {
 
     @NSManaged var no: NSNumber?
     @NSManaged var name: String?
-
+    @NSManaged var t1: String?
+    @NSManaged var t2: String?
+    @NSManaged var h: NSNumber?
+    @NSManaged var a: NSNumber?
+    @NSManaged var b: NSNumber?
+    @NSManaged var c: NSNumber?
+    @NSManaged var d: NSNumber?
+    @NSManaged var s: NSNumber?
+    @NSManaged var total: NSNumber?
+    @NSManaged var sp1: String?
+    @NSManaged var sp2: String?
+    @NSManaged var ha: String?
+    @NSManaged var ad1: NSNumber?
+    @NSManaged var ad2: NSNumber?
+    @NSManaged var ad3: NSNumber?
+    
 }

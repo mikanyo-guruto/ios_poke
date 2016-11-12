@@ -15,6 +15,13 @@ class DevelopController: UIViewController {
     
     @IBOutlet weak var Img: UIImageView!
     @IBOutlet weak var Name: UILabel!
+    @IBOutlet weak var Hp: UILabel!
+    @IBOutlet weak var Atk: UILabel!
+    @IBOutlet weak var Def: UILabel!
+    @IBOutlet weak var Mat: UILabel!
+    @IBOutlet weak var Mde: UILabel!
+    @IBOutlet weak var Spd: UILabel!
+    @IBOutlet weak var Total: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,16 +47,26 @@ class DevelopController: UIViewController {
                 for row in results {
                     Name.text = row.name
                     // 画像はidと同じ画像名の物を表示する為、一度idをstringにキャスト
-                    let tmp: String = String(row.no)
-                    Img.image = UIImage(named: tmp)
-                    if tmp == "1" {
-                        print("ok")
+                    let tmp: String = String(row.no!)
+                    // 画像の存在チェック
+                    if !tmp.isEmpty{
+                        Img.image = UIImage(named: tmp)
+                        print(UIImage(named: tmp))
                     }else{
-                        print(tmp)
+                        print("[ERROR]img")
                     }
+                    
+                    // ステータスの代入
+                    Hp.text = String(row.h!)
+                    Atk.text = String(row.a!)
+                    Def.text = String(row.b!)
+                    Mat.text = String(row.c!)
+                    Mde.text = String(row.d!)
+                    Spd.text = String(row.s!)
+                    Total.text = String(row.total!)
                 }
             }else{
-                Name.text = "Not Found"
+                print("Not Found")
             }
         } catch let error as NSError{
             print("Could not fetch ¥(error), ¥(error.userInfo)")
