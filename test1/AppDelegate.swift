@@ -39,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             result.removeAtIndex(0)
             
             // カラムを変数で宣言
+            var id: Int = 0
             var no: Int = 0
             var name: String = "null"
             var t1: String = "null"
@@ -60,7 +61,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // appDelegateインスタンスを生成
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             // CoreDateでDBへ保存
+            var i: Int = 0
             result.forEach { row in
+                id = i
                 no = Int(row[0]) ?? 9999
                 name = row[1] ?? ""
                 t1 = row[2] ?? ""
@@ -82,6 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 // テーブルの指定
                 let monster = NSEntityDescription.insertNewObjectForEntityForName("Monster", inManagedObjectContext: appDelegate.managedObjectContext) as! Monster
                 // カラムへ入れ込む
+                monster.id = id
                 monster.no = no
                 monster.name = name
                 monster.t1 = t1
@@ -102,17 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 // コミット
                 appDelegate.saveContext()
-            }
-            
-            // 検索
-            let fetchRequest = NSFetchRequest(entityName: "Monster")
-            do {
-                let monsters = try appDelegate.managedObjectContext.executeFetchRequest(fetchRequest) as! [Monster]
-                for monster in monsters {
-                    print("\(monster.no) \(monster.name)")
-                }
-            } catch let error as NSError {
-                print(error)
+                i = i + 1
             }
             
             // 初回起動処理が終わったら、フラグを立てる
@@ -120,7 +114,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             print("firstLaunch")
         }
+        // 検索
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let fetchRequest = NSFetchRequest(entityName: "Monster")
+        do {
+            let monsters = try appDelegate.managedObjectContext.executeFetchRequest(fetchRequest) as! [Monster]
+            for monster in monsters {
+                print("\(monster.id) \(monster.no) \(monster.name)")
+            }
+        } catch let error as NSError {
+            print(error)
+        }
         print("Run")
+        
         return true
     }
 

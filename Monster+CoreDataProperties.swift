@@ -14,6 +14,7 @@ import CoreData
 
 extension Monster {
 
+    @NSManaged var id: NSNumber?
     @NSManaged var no: NSNumber?
     @NSManaged var name: String?
     @NSManaged var t1: String?

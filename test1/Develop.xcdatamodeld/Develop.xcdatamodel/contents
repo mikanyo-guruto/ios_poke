@@ -10,6 +10,7 @@
         <attribute name="d" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="h" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="ha" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="no" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="s" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -20,6 +21,6 @@
         <attribute name="total" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Monster" positionX="-63" positionY="-18" width="128" height="300"/>
+        <element name="Monster" positionX="-63" positionY="-18" width="128" height="315"/>
     </elements>
 </model>
