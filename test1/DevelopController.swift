@@ -57,8 +57,8 @@ class DevelopController: UIViewController {
                     }else{
                         print("[ERROR]img")
                     }
-                    print(request.predicate)
-                    // メガ進化の検索
+                    
+                    // メガの検索
                     let predicate_mega = NSPredicate(format: "%K = %d", "no", no)
                     request.predicate = predicate_mega
                     print(request.predicate)
