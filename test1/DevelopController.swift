@@ -58,10 +58,67 @@ class DevelopController: UIViewController {
                         print("[ERROR]img")
                     }
                     
+                    // #タイプ処理
+                    // タイプをDBから取得
+                    var type: [String] = []
+                    type.append(row.t1!)
+                    if (row.t2 != nil) {
+                        type.append(row.t2!)
+                    }
+                    // タイプの取得
+                    
+                    let type_name = [
+                        "ノーマル", "かくとう", "どく", "じめん", "ひこう",
+                        "むし", "いわ", "ゴースト", "はがね", "ほのお",
+                        "みず", "でんき", "くさ", "こおり", "エスパー",
+                        "ドラゴン", "あく", "フェアリー"
+                    ];
+                    
+                    let type_week = [
+                            // 普,  闘, 毒, 地,  飛, 虫, 岩, 霊,  鋼, 炎, 水, 電,  草, 氷,  超, 龍, 悪, 妖
+                        /*普*/[1,2,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1],
+                        /*闘*/[1,1,1,1,2,0.5,0.5,1,1,1,1,1,1,1,2,1,0.5,2],
+                        /*毒*/[1,0.5,0.5,2,1,0.5,1,1,1,1,1,1,0.5,1,2,1,1,0.5],
+                        /*地*/[1,1,0.5,1,1,1,0.5,1,1,1,2,0,2,2,1,1,1,1],
+                        /*飛*/[1,0.5,1,0,1,0.5,2,1,1,1,1,2,0.5,2,1,1,1,1],
+                        /*虫*/[1,0.5,1,0.5,2,1,2,1,1,2,1,1,0.5,1,1,1,1,1],
+                        /*岩*/[0.5,2,0.5,2,0.5,1,1,1,2,0.5,2,1,2,1,1,1,1,1],
+                        /*霊*/[0,0,0.5,1,1,0.5,1,2,1,1,1,1,1,1,1,1,2,1],
+                        /*鋼*/[0.5,2,0,2,0.5,0.5,0.5,1,0.5,2,1,1,0.5,0.5,0.5,0.5,1,0.5],
+                        /*炎*/[1,1,1,2,1,0.5,2,1,0.5,0.5,2,1,0.5,0.5,1,1,1,0.5],
+                        /*水*/[1,1,1,1,1,1,1,1,0.5,0.5,0.5,2,2,0.5,1,1,1,1],
+                        /*電*/[1,1,1,2,0.5,1,1,1,0.5,1,1,0.5,1,1,1,1,1,1],
+                        /*草*/[1,1,2,0.5,2,2,1,1,1,2,0.5,0.5,0.5,2,1,1,1,1],
+                        /*氷*/[1,2,1,1,1,1,2,1,2,2,1,1,1,1,0.5,1,2,1],
+                        /*超*/[1,0.5,1,1,1,2,1,2,1,1,1,1,1,1,0.5,1,2,1],
+                        /*龍*/[1,2,1,1,1,1,1,1,1,0.5,0.5,0.5,0.5,2,1,2,1,2],
+                        /*悪*/[1,2,1,1,1,2,1,0.5,1,1,1,1,1,1,0,1,0.5,2],
+                        /*妖*/[1,0.5,2,1,1,0.5,1,1,2,1,1,1,1,1,1,0,0.5,1]
+                    ];
+                    
+                    var merge_type_week:[Double] = []
+                    // type_nameにタイプと同じ名前があるか検索
+                    if type_name.indexOf(type[0]) != nil {
+                        // type2のがあれば
+                        if !type[1].isEmpty && type_name.indexOf(type[1]) != nil {
+                            for i in 0 ..< type_week.count {
+                                merge_type_week.append(
+                                    type_week[type_name.indexOf(type[0])!][i] *
+                                    type_week[type_name.indexOf(type[1])!][i])
+                            }
+                        // なければタイプ1を代入
+                        }else{
+                            for i in 0 ..< type_week.count {
+                                merge_type_week.append(type_week[type_name.indexOf(type[0])!][i])
+                            }
+                        }
+                        print(merge_type_week)
+                    }
+                    
                     // メガの検索
                     let predicate_mega = NSPredicate(format: "%K = %d", "no", no)
                     request.predicate = predicate_mega
-                    print(request.predicate)
+                    
                     let mega_results = try managedObjectContext.executeFetchRequest(request) as! [Monster]
                     
                     var mega1: [Any] = []
@@ -70,7 +127,6 @@ class DevelopController: UIViewController {
                     if !mega_results.isEmpty {
                         for mega in mega_results {
                             // 検索したモンスターは除外(最初を除外)
-                            print(mega.name!)
                             switch j {
                             case 0:
                                 break
@@ -87,9 +143,6 @@ class DevelopController: UIViewController {
                             j = j+1
                         }
                     }
-                    print("---")
-                    print(mega1)
-                    print(mega2)
                     
                     // ステータスの代入
                     Hp.text = String(row.h!)

@@ -115,6 +115,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("firstLaunch")
         }
         // 検索
+        /*
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let fetchRequest = NSFetchRequest(entityName: "Monster")
         do {
@@ -125,6 +126,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch let error as NSError {
             print(error)
         }
+*/
         print("Run")
         
         return true
