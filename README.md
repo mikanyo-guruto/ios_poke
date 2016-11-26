@@ -21,4 +21,4 @@ https://github.com/mikanyo-guruto/webPoke
   + 素早さ
 
 ### 画面遷移
-![画面遷移](https://github.com/mikanyo-guruto/ios_poke/readme/screen_shot.png "画面遷移")
+![画面遷移](https://github.com/mikanyo-guruto/ios_poke/blob/master/readme/screen_shot.png)
