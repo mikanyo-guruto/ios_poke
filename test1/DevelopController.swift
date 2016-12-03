@@ -37,6 +37,11 @@ class DevelopController: UIViewController {
         DevelopName()
     }
     
+    /// ### 戻るボタンを押された時の処理
+    @IBAction func BackBtn(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     /// ### 名前で検索
     private func DevelopName() {
         // predicateの設定
@@ -79,6 +84,10 @@ class DevelopController: UIViewController {
         
         do{
             let results = try managedObjectContext.executeFetchRequest(request) as! [Monster]
+            
+            if results.isEmpty {
+                
+            }
             
             for row in results {
                 let no = Int(row.no!)
