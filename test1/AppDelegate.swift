@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // 初回起動処理
         let defaults = NSUserDefaults.standardUserDefaults()
-        var dic = ["firstLaunch": true]
+        defaults.setBool(true, forKey: "firstLaunch")
         
         // 初回起動の場合、csvからDBを作成する
         if defaults.boolForKey("firstLaunch") {
