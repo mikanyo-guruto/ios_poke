@@ -97,9 +97,6 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="14v-4C-tBM"/>
-                                <exclude reference="1PP-X3-ajf"/>
-                                <exclude reference="ac1-3Y-FWZ"/>
                                 <exclude reference="L3f-1w-fAb"/>
                                 <exclude reference="ROz-iZ-7dF"/>
                                 <exclude reference="UTY-zI-4gC"/>
@@ -107,6 +104,9 @@
                                 <exclude reference="dw7-yt-DCQ"/>
                                 <exclude reference="nb6-TZ-XRy"/>
                                 <exclude reference="qwV-T5-hBB"/>
+                                <exclude reference="14v-4C-tBM"/>
+                                <exclude reference="1PP-X3-ajf"/>
+                                <exclude reference="ac1-3Y-FWZ"/>
                                 <exclude reference="8kf-ad-9TL"/>
                                 <exclude reference="EF0-tI-YS1"/>
                                 <exclude reference="ezh-NN-geq"/>

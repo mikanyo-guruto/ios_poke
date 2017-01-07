@@ -169,6 +169,7 @@ class DevelopController: UIViewController {
                 var j = 0
                 if !mega_results.isEmpty {
                     for mega in mega_results {
+
                         // 検索したモンスターは除外(最初を除外)
                         switch j {
                         case 0:
@@ -189,6 +190,7 @@ class DevelopController: UIViewController {
                         j = j+1
                     }
                 }
+                
                 // --- END メガの検索 ---- ///
                 
                 // ステータスの代入
@@ -202,9 +204,14 @@ class DevelopController: UIViewController {
                 if !mega1.isEmpty {
                     Mega1.setTitle(String(mega1[1]), forState: UIControlState.Normal)
                     
+                }else{
+                    Mega1.hidden = true
                 }
+                
                 if !mega2.isEmpty {
                     Mega2.setTitle(String(mega2[1]), forState: UIControlState.Normal)
+                }else{
+                    Mega2.hidden = true
                 }
             }
         }catch {

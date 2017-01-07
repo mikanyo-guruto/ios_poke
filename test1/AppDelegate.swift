@@ -19,10 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // 初回起動処理
         let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setBool(true, forKey: "firstLaunch")
         
         // 初回起動の場合、csvからDBを作成する
-        if defaults.boolForKey("firstLaunch") {
+        if defaults.boolForKey("firstLaunch") != false {
             
             // csvを入れ込む配列を用意
             var result: [[String]] = []
@@ -34,6 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 csvString.enumerateLines { (line, stop) -> () in
                     result.append(line.componentsSeparatedByString(","))
                 }
+                // テーブルの作成
+                
             }
             // カラムを削除
             result.removeAtIndex(0)
@@ -63,6 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // CoreDateでDBへ保存
             var i: Int = 0
             result.forEach { row in
+                
                 id = i
                 no = Int(row[0]) ?? 9999
                 name = row[1] ?? ""
@@ -110,10 +112,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             
             // 初回起動処理が終わったら、フラグを立てる
-            defaults.setBool(false, forKey: "firstLaunch")
+            defaults.setBool(true , forKey: "firstLaunch")
             
             print("firstLaunch")
         }
+        defaults.setBool(false , forKey: "firstLaunch")
         // 検索
         /*
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
