@@ -12,8 +12,10 @@ import CoreData
 class DevelopController: UIViewController {
     
     var KeyWord: String!
+    var mega_id: Int16 = 9999
     var Mega1_id: Int16!
     var Mega2_id: Int16!
+    var back_id: Int!
     
     @IBOutlet weak var Img: UIImageView!
     @IBOutlet weak var Name: UILabel!
@@ -39,7 +41,15 @@ class DevelopController: UIViewController {
     
     /// ### 戻るボタンを押された時の処理
     @IBAction func BackBtn(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+        if back_id == nil {
+            dismissViewControllerAnimated(true, completion: nil)
+        }else{
+            Mega1_id = 9999
+            Mega2_id = 9999
+            mega_id = 9999
+            let predicate = NSPredicate(format: "id = %d", back_id)
+            setMonsterData(predicate)
+        }
     }
     
     /// ### 名前で検索
@@ -54,7 +64,6 @@ class DevelopController: UIViewController {
     /// ### メガのボタンを押された時の処理
     @IBAction func MegaDevelop(sender: AnyObject) {
         // 押されたボタンによってmega_idをセットする
-        var mega_id: Int16 = 9999
         if sender.tag! == 0 {
             mega_id = Mega1_id
         } else if sender.tag! == 1 {
@@ -90,13 +99,26 @@ class DevelopController: UIViewController {
             }
             
             for row in results {
-                let no = Int(row.no!)
+                //let no = Int(row.no!)
                 Name.text = row.name
-                // 画像はidと同じ画像名の物を表示する為、一度idをstringにキャスト
-                let tmp: String = String(no)
+                
+                let no = Int(row.no!)
+                // 画像はidと同じ画像名の物を表示する為、stringで取得
+                var img_name: String? = nil
+                
+                if mega_id != 9999 {
+                    if (no + 1) == mega_id{
+                        img_name = String(row.no!) + "_1"
+                    }else if (no + 2) == Mega2_id {
+                        img_name = String(row.no!) + "_2"
+                    }
+                }else{
+                    img_name = String(row.no!)
+                }
+                
                 // 画像の存在チェック
-                if !tmp.isEmpty{
-                    Img.image = UIImage(named: tmp)
+                if UIImage(named: img_name!) != nil{
+                    Img.image = UIImage(named: img_name!)
                 }else{
                     print("[ERROR]img")
                 }
@@ -193,6 +215,12 @@ class DevelopController: UIViewController {
                 
                 // --- END メガの検索 ---- ///
                 
+                if mega_id != 9999 {
+                    back_id = no
+                }else{
+                    back_id = nil
+                }
+                
                 // ステータスの代入
                 Hp.text = String(row.h!)
                 Atk.text = String(row.a!)
@@ -201,9 +229,9 @@ class DevelopController: UIViewController {
                 Mde.text = String(row.d!)
                 Spd.text = String(row.s!)
                 Total.text = String(row.total!)
+                
                 if !mega1.isEmpty {
                     Mega1.setTitle(String(mega1[1]), forState: UIControlState.Normal)
-                    
                 }else{
                     Mega1.hidden = true
                 }
