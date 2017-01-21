@@ -11,6 +11,7 @@ import CoreData
 
 class DevelopController: UIViewController {
     
+    var mId: Int!
     var KeyWord: String!
     var mega_id: Int16 = 9999
     var Mega1_id: Int16!
@@ -105,13 +106,17 @@ class DevelopController: UIViewController {
                 
                 let no = Int(row.no!)
                 let id = Int(row.id!)
+                
+                print("no;", no)
+                print("mega_id:", mega_id)
+                
                 // 画像はidと同じ画像名の物を表示する為、stringで取得
                 var img_name: String? = nil
                 
                 if mega_id != 9999 {
-                    if (no + 1) == mega_id{
+                    if (mId + 1) == mega_id{
                         img_name = String(row.no!) + "_1"
-                    }else if (no + 2) == Mega2_id {
+                    }else if (mId + 2) == Mega2_id {
                         img_name = String(row.no!) + "_2"
                     }else{
                         print("MegaImg input Error")
@@ -119,6 +124,7 @@ class DevelopController: UIViewController {
                     }
                 }else{
                     img_name = String(row.no!)
+                    mId = Int(row.id!)
                 }
                 
                 // 画像の存在チェック
