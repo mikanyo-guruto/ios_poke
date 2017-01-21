@@ -16,6 +16,7 @@ class DevelopController: UIViewController {
     var Mega1_id: Int16!
     var Mega2_id: Int16!
     var back_id: Int!
+    var back_status: Bool!
     
     @IBOutlet weak var Img: UIImageView!
     @IBOutlet weak var Name: UILabel!
@@ -41,7 +42,7 @@ class DevelopController: UIViewController {
     
     /// ### 戻るボタンを押された時の処理
     @IBAction func BackBtn(sender: AnyObject) {
-        if back_id == nil {
+        if !back_status {
             dismissViewControllerAnimated(true, completion: nil)
         }else{
             Mega1_id = 9999
@@ -103,6 +104,7 @@ class DevelopController: UIViewController {
                 Name.text = row.name
                 
                 let no = Int(row.no!)
+                let id = Int(row.id!)
                 // 画像はidと同じ画像名の物を表示する為、stringで取得
                 var img_name: String? = nil
                 
@@ -111,6 +113,9 @@ class DevelopController: UIViewController {
                         img_name = String(row.no!) + "_1"
                     }else if (no + 2) == Mega2_id {
                         img_name = String(row.no!) + "_2"
+                    }else{
+                        print("MegaImg input Error")
+                        img_name = "no_image"
                     }
                 }else{
                     img_name = String(row.no!)
@@ -120,11 +125,12 @@ class DevelopController: UIViewController {
                 if UIImage(named: img_name!) != nil{
                     Img.image = UIImage(named: img_name!)
                 }else{
-                    print("[ERROR]img")
+                    Img.image = UIImage(named: "no_image")
                 }
                 
                 // --- タイプ処理 --- //
                 // タイプをDBから取得
+                /*
                 var type: [String] = []
                 type.append(row.t1!)
                 if (row.t2 != nil) {
@@ -177,7 +183,7 @@ class DevelopController: UIViewController {
                         }
                     }
                 }
-                
+                */
                 // --- END タイプ処理 --- //
                 
                 // --- メガの検索 --- //
@@ -215,10 +221,12 @@ class DevelopController: UIViewController {
                 
                 // --- END メガの検索 ---- ///
                 
-                if mega_id != 9999 {
-                    back_id = no
+                // メガ進化ではなかったら
+                if mega_id == 9999 {
+                    back_id = id
+                    back_status = false
                 }else{
-                    back_id = nil
+                    back_status = true
                 }
                 
                 // ステータスの代入
