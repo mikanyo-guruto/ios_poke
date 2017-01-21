@@ -105,10 +105,6 @@ class DevelopController: UIViewController {
                 Name.text = row.name
                 
                 let no = Int(row.no!)
-                let id = Int(row.id!)
-                
-                print("no;", no)
-                print("mega_id:", mega_id)
                 
                 // 画像はidと同じ画像名の物を表示する為、stringで取得
                 var img_name: String? = nil
@@ -229,7 +225,7 @@ class DevelopController: UIViewController {
                 
                 // メガ進化ではなかったら
                 if mega_id == 9999 {
-                    back_id = id
+                    back_id = Int(row.id!)
                     back_status = false
                 }else{
                     back_status = true
